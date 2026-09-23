@@ -1,14 +1,6 @@
 import { useDesignStore } from '../store/design'
 import { THEMES } from '../themes/palettes'
-import type { PatternType } from '../types'
-
-const PATTERNS: { value: PatternType; label: string }[] = [
-  { value: 'spiral',  label: '🌀 螺旋' },
-  { value: 'fractal', label: '🌳 分形树' },
-  { value: 'wave',    label: '🌊 波浪' },
-  { value: 'circles', label: '⭕ 圆环' },
-  { value: 'noise',   label: '🎲 噪声场' },
-]
+import { PATTERNS } from '../generators/patterns'
 
 export default function Sidebar() {
   const store = useDesignStore()
@@ -22,8 +14,8 @@ export default function Sidebar() {
         <label className="text-xs text-gray-400 block mb-1">图案类型</label>
         <div className="grid grid-cols-2 gap-2">
           {PATTERNS.map(p => (
-            <button key={p.value} onClick={() => store.setPattern(p.value)}
-              className={`px-2 py-1.5 rounded text-xs font-medium ${store.pattern===p.value?'bg-indigo-600':'bg-gray-700 hover:bg-gray-600'}`}>
+            <button key={p.id} onClick={() => store.setPattern(p.id)}
+              className={`px-2 py-1.5 rounded text-xs font-medium ${store.pattern===p.id?'bg-indigo-600':'bg-gray-700 hover:bg-gray-600'}`}>
               {p.label}
             </button>
           ))}
